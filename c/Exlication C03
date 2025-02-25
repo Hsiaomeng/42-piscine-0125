@@ -1,0 +1,15 @@
+result = (char *)malloc(ft_total_length(size, strs, sep));
+//你不需要使用 sizeof，因为 ft_total_length 返回的是所需的字节数（即内存的总长度），而 malloc 需要的是一个字节数。因此，ft_total_length 已经计算出了正确的字节数，所以直接将它作为 malloc 的参数传递是完全正确的。
+
+//解释：
+//ft_total_length 计算并返回的是所需的字节数。假设返回的是一个整数，表示内存块的总字节数。
+
+//malloc 需要的是一个字节数来分配内存块，sizeof 只用于确定数据类型的大小。如果你想分配的内存是字符类型数组，那么 sizeof(char) 始终是 1，因为 char 占用 1 个字节。
+
+//因此，malloc 直接使用 ft_total_length 返回的字节数是正确的，不需要再使用 sizeof，因为返回值已经是字节数了。
+
+//如果你分配的是其他类型的数组（如 int 类型数组），你才需要使用 sizeof 来确保为每个元素分配正确的字节数。例如：
+
+int *arr = (int *)malloc(n * sizeof(int)); // 分配 n 个 int 类型的内存
+
+//在这种情况下，sizeof(int) 需要加上，来确保分配的内存足够存储 n 个 int 元素。
